@@ -1,0 +1,9 @@
+<h1>Show Posts</h1>
+<h2><%= last_time_stamp %>test</h2>
+
+<% @posts.each do |p|%>
+  <p><%= link_to p.title, post_path(p.id) %></p>
+  <p><%= p.body %></p>
+  <hr>
+
+<% end %>

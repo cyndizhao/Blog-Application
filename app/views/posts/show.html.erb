@@ -1,0 +1,30 @@
+<h1>Show One Post</h1>
+<p><%= @post.title %></p>
+<p><%= @post.body %></p>
+<br>
+<%= link_to 'Delete', post_path(@post), method: :delete, data:{confirm: 'Are you sure?'} %>
+<%= link_to 'Edit', edit_post_path(@post) %>
+
+
+<%# comments create here %>
+<h2>Comments</h2>
+
+<ul>
+<% @comment.errors.messages.each do |e|%>
+  <li><%= e %></li>
+<% end %>
+</ul>
+
+<%= form_for [@post, @comment] do |f| %>
+  <%= f.text_area :body %>
+  <br>
+  <%= f.submit %>
+<% end %>
+
+
+<h1>Show Comments</h1>
+<% @post.comments.each do |c|%>
+  <p><%= c.body %></p>
+  <%= link_to 'Delete Comment', post_comment_path(@post, c), method: :delete, data:{confirm: "Are your sure?"} %>
+  <hr>
+<% end %>
