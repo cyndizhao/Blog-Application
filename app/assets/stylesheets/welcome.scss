@@ -1,18 +1,39 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-body{
-  background-image: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRgCWi-OCYRR-L8k91LlVTdYLmqDocDqEIQdSrKpCeYr8LCEzaD8A');
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-top: 50px;
+
+html,body{height:calc(100% - 70px);margin:70px 0px 0px 0px;padding:0;}
+
+#main{min-height:100%; padding-bottom: 100px;}
+// main{padding-bottom:100px;background-color: #bdb76b;}/* main的padding-bottom值要等于或大于footer的height值 */
+footer{
+  text-align: center;
+  height:50px;margin-top:-100px;
+}/* margin-top（负值的）高度等于footer的height值 */
+#nav{
+  font-family: 'Merriweather', serif;
 }
-// .row{
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   vertical-align: middle;
-//   font-size: 4em;
-//   position: relative;
-//   top: 10vw;
+.navbar-brand > img {
+  max-height: 100%;
+  height: auto;
+}
+
+.footer-icons .fa {
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+// .footer-icons {
+//     display: flex;
+//     justify-content: center;
+//     align-content: center;
+//     font-size: 30px;
+// }
+
+// footer {
+//   position: absolute;
+//   bottom: 0;
+//   width: 100%;
+//   height: 60px;
+//   background-color: none;
 // }
