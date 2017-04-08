@@ -1,3 +1,129 @@
+<div class="container-fluid">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+        <h2><%= @post.title %></h2>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <h2>
+          <span class="glyphicon glyphicon glyphicon-heart-empty"></span>
+          <span>478</span>
+          <span class="glyphicon glyphicon glyphicon-bookmark"></span>
+          <h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <%= image_tag "post1.jpg", class:"img-responsive" %>
+    <br>
+    <div class="container">
+
+      <br>
+
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <p><%= @post.body %></p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Lorem ipsum dolor sit amet, labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <br>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <span><%= @post.category.name %></span>
+          <span class="pull-right"><%= @post.created_at%></span>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="DeleteEditPost">
+          <span class="pull-right">
+
+            <%= link_to 'Edit', edit_post_path(@post), class: "btn btn-danger"  %>
+            <%= link_to 'Delete', post_path(@post), class: "btn btn-success", method: :delete, data:{confirm: 'Are you sure?'} %>
+          </span>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+
+
+    <div class="container" id="author_info">
+      <div class="row" >
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="author_image">
+          <%= image_tag "author1.jpg", class:"img-responsive" %>
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+          <a href="#"><%= @post.user.first_name %> <%= @post.user.last_name%></a>
+          <p><%= @post.body %>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="container" id="changes">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2" id="form">
+          <%= form_for [@post, @comment] do |f| %>
+            <div class="form-group">
+              <label for="comment" class="control-label">Leave Comment</label>
+              <%= f.text_area :body, class: "form-control", rows: 4, placeholder: "Comment Body" %>
+            </div>
+            <div class="form-group ">
+              <div class="col-md-3 col-xs-6" style="padding-left:0px;">
+                <%= f.submit class: "btn btn-info btn-block" %>
+              </div>
+
+            </div>
+          </form>
+          <br>
+          <hr>
+          <br>
+          <% end %>
+
+          <% @post.comments.each do |c| %>
+          <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+                <%= image_tag "author#{@number}.jpg", class:"img-responsive" %>
+              </div>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+              <p><%= c.body %></p>
+            </div>
+
+          </div>
+          <br>
+          <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><%= c.user.first_name %> <%= c.user.last_name %></div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="comment_date"><span class="pull-right"><%= c.created_at %></span></div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><%= link_to 'Delete Comment', post_comment_path(@post, c), method: :delete, data:{confirm: "Are your sure?"} %></div>
+          </div>
+          <br>
+          <br>
+          <% @number += 1 %>
+          <% end %>
+
+          <br>
+          <br>
+          <div class="row" id="more_Comments">
+            <a href="#" class="btn btn-info btn-lg" role="button">More Comments</a>
+          </div>
+          <br>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
 <h1>Show One Post</h1>
 <p><%= @post.title %></p>
 <p><%= @post.body %></p>
@@ -9,11 +135,6 @@
 <%# comments create here %>
 <h2>Comments</h2>
 
-<ul>
-<% @comment.errors.messages.each do |e|%>
-  <li><%= e %></li>
-<% end %>
-</ul>
 
 <%= form_for [@post, @comment] do |f| %>
   <%= f.text_area :body %>

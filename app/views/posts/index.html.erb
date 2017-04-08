@@ -1,19 +1,9 @@
-<h1>Show Posts</h1>
-
-<% @posts.each do |p|%>
-  <p><%= link_to p.title, post_path(p.id) %></p>
-  <p><%= p.body %></p>
-  <hr>
-
-<% end %>
-
+<br>
 <div class="container">
     <div class="row" id="most_liked">
-            <div class="col-lg-8" id="most_liked_image">
+        <div class="col-lg-8" id="most_liked_image">
               <div class="row">
                 <%= image_tag 'post1.jpg', style: 'width: 100%', class:"img-responsive" %>
-
-                <!-- <img style="width: 100px" src="post1.jpg" class="img-responsive" alt="Responsive image"> -->
               </div>
               <br>
               <div class="row">
@@ -28,32 +18,31 @@
                 <span><%= @posts[-1].created_at %></span>
               </div>
             </div>
-            <div class="col-lg-4" id="most_liked_text">
-              <div class="row">
-                <h3>Most Liked</h3>
-              </div>
-              <div class="row">
-                <a href="#"><h5>The Worst Advice We've Ever Heard</h5></a>
-              </div>
-              <div class="row">
-                <a href="#"><h5>Think You're Cut Out For Doing Design</h5></a>
-              </div>
-              <div class="row">
-                <a href="#"><h5>10 Things Your Competitors Can Teach</h5></a>
-              </div>
-              <div class="row">
-                <a href="#"><h5>How To Solve The Biggest Problems</h5></a>
-              </div>
+        <div class="col-lg-4" id="most_liked_text">
+                <div class="row">
+                  <h3>Most Liked</h3>
+                </div>
+                <div class="row">
+                  <a href="#"><h5>The Worst Advice We've Ever Heard</h5></a>
+                </div>
+                <div class="row">
+                  <a href="#"><h5>Think You're Cut Out For Doing Design</h5></a>
+                </div>
+                <div class="row">
+                  <a href="#"><h5>10 Things Your Competitors Can Teach</h5></a>
+                </div>
+                <div class="row">
+                  <a href="#"><h5>How To Solve The Biggest Problems</h5></a>
+                </div>
+        </div>
+    </div>
 
-            </div>
-
-          </div>
       <% @postsnested.each do |p|%>
         <div class="row" id="posts">
           <% p.each do |s|%>
             <div class="col-lg-4">
                     <div class="row">
-                      <%= image_tag 'post1.jpg', style: 'width: 100%', class:"img-responsive" %>
+                      <%= image_tag "post#{@number}.jpg", style: 'width: 100%', class:"img-responsive" %>
                     </div>
                     <br>
                     <div class="row">
@@ -62,15 +51,21 @@
                       <span class="glyphicon glyphicon glyphicon-bookmark pull-right"></span>
                     </div>
                     <div class="row">
-                      <h3>Post Title</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                      <a href="#"><p>Post Author</p></a>
-                      <span>Post Date</span>
+                      <h3><%= link_to s.title, post_path(s.id) %></h3>
+                      <p><%= s.body %></p>
+                      <a href="#"><p><%= User.find(s.user.id).first_name %> <%= User.find(s.user.id).last_name %></p></a>
+                      <span><%= s.created_at %></span>
                     </div>
                   </div>
-
+          <% @number -= 1 %>
           <% end %>
         </div>
 
         <br>
+        <br>
       <% end %>
+      <div class="row" id="more_Article">
+        <a href="#" class="btn btn-info btn-lg" role="button">More Article</a>
+      </div>
+      <br>
+      <hr>

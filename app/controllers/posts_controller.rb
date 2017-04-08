@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.last(10)
     @postsnested = [[@posts[0], @posts[1], @posts[2]], [@posts[3], @posts[4], @posts[5]], [@posts[6], @posts[7], @posts[8]]]
+    @number = 10
   end
 
   def new
@@ -22,6 +23,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @number = 2
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments
