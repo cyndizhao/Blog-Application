@@ -30,6 +30,14 @@ class PostsController < ApplicationController
     @comment = Comment.new
     @comments = @post.comments
     # try to limit number of the displaying comments
+    if !(@post.likes.find_by_user_id(current_user))
+      @liked_by_currentuser = false
+    else
+      @liked_by_currentuser = true
+
+    end
+    @like = Like.new
+
   end
 
   def destroy

@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     if !user_signed_in?
-      redirect_to new_session_path, notice: 'You must be signed in!'
+      redirect_to new_session_path, alert: 'You must be signed in!'
     end
   end
   # def last_time_stamp
@@ -26,4 +26,5 @@ class ApplicationController < ActionController::Base
   #   p session
   #   # session[:last_time_stamp] = DateTime.now
   # end
+
 end
