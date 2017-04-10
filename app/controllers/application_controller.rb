@@ -1,6 +1,6 @@
 # require 'date'
 class ApplicationController < ActionController::Base
-  before_action :update_time_stamp
+  # before_action :update_time_stamp
   protect_from_forgery with: :exception
   def user_signed_in?
     session[:user_id].present?
@@ -14,16 +14,17 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     if !user_signed_in?
-      redirect_to new_session_path, notice: 'You must be signed in!'
+      redirect_to new_session_path, alert: 'You must be signed in!'
     end
   end
-  def last_time_stamp
-    session[:last_time_stamp]
-  end
-  helper_method :last_time_stamp
+  # def last_time_stamp
+  #   session[:last_time_stamp]
+  # end
+  # helper_method :last_time_stamp
   #
-  def update_time_stamp
-    p session
-    # session[:last_time_stamp] = DateTime.now
-  end
+  # def update_time_stamp
+  #   p session
+  #   # session[:last_time_stamp] = DateTime.now
+  # end
+
 end

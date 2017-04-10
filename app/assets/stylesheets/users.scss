@@ -1,3 +1,10 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#signup {
+	margin-top: 20vh;
+}
+
+#signup .panel{
+	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+}
