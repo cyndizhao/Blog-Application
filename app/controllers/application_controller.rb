@@ -1,6 +1,5 @@
 # require 'date'
 class ApplicationController < ActionController::Base
-
   protect_from_forgery with: :exception
   def user_signed_in?
     session[:user_id].present?
@@ -14,8 +13,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     if !user_signed_in?
-      redirect_to new_session_path, notice: 'You must be signed in!'
+      redirect_to new_session_path, alert: 'You must be signed in!'
     end
   end
-  
 end

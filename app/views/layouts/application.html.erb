@@ -82,10 +82,18 @@
       </nav>
 
     <% if flash[:notice] %>
-      <div class="flash-notice"><%= flash[:notice] %></div>
+    <div class="alert alert-success" role="alert">
+
+      <%= flash[:notice] %>
+    </div>
     <% elsif flash[:alert] %>
-      <div class="flash-alert"><%= flash.now[:alert] %></div>
+    <div class="alert alert-danger" role="alert">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      <%= flash[:alert] %>
+    </div>
     <% end %>
+
 
     <%= yield %>
     </div>
