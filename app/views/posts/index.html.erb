@@ -12,13 +12,13 @@
         <span class="glyphicon glyphicon glyphicon-bookmark pull-right"></span>
       </div>
       <div class="row">
-        <h3><%= link_to @last_post.title, post_path(@posts[-1].id) %></h3>
+        <h3><%= link_to @last_post.title, post_path(@last_post.id) %></h3>
         <p><%= @last_post.body %></p>
         <a href="#">
           <p><%= User.find(@last_post.user.id).first_name %>
             <%= User.find(@last_post.user.id).last_name %></p>
         </a>
-        <span><%= @last_post.created_at %></span>
+        <span><%= @last_post.formatted_date %></span>
       </div>
     </div>
     <div class="col-lg-4" id="most_liked_text">
@@ -32,6 +32,8 @@
       <% end %>
     </div>
   </div>
+  <br>
+  <br>
 
   <%# @posts.each_slice(3) do |group|%>
   <% @posts.in_groups(3) do |group|%>
@@ -54,7 +56,7 @@
           <p><%= User.find(post.user.id).first_name %>
             <%= User.find(post.user.id).last_name %></p>
         </a>
-        <span><%= post.created_at %></span>
+        <span><%= post.formatted_date %></span>
       </div>
     </div>
     <% @number -= 1 %>

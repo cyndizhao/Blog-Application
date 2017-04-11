@@ -1,18 +1,34 @@
-<h1>Create Post</h1>
-
 <%= @post.errors.full_messages.join(', ') %>
-<%= form_for @post do |f| %>
-  <div>
-    <%= f.label :category_id %>
-    <%= f.text_field :category_id %>
-  </div>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-  <div>
-    <%= f.label :body %>
-    <%= f.text_area :body %>
-  </div>
-  <%= f.submit %>
-<% end %>
+<div class="container" id="editPost">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+			<h1>Edit post</h1>
+			<%= form_for @post do |f| %>
+			<div class="form-group">
+				<%= f.label :title %>
+				<%= f.text_field :title, class:"form-control" %>
+			</div>
+			<div class="form-group">
+				<%= f.label :body %>
+				<%= f.text_area :body, rows:"8", class:"form-control"%>
+			</div>
+			<div class="form-group">
+				<%= f.label :category_id %>
+				<%= f.collection_select :category_id, Category.order(:name), :id, :name %>
+			</div>
+			<div class="form-group">
+				<%= f.submit "Create", class:"btn btn-primary"%>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<style>
+  footer {
+    position:fixed;
+    right:0px;
+    left:0px;
+    bottom: 5vh;
+  }
+</style>
