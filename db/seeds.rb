@@ -15,11 +15,12 @@ end
             last_name: Faker::Name.last_name,
             email: Faker::Internet.email,
             password: "12345678",
-            password_confirmation: "12345678"
+            password_confirmation: "12345678",
+            description: body: Faker::Hipster.paragraph
 end
 
 10.times do
-  Post.create title: Faker::Lorem.word,
+  Post.create title: Faker::Book.title,
               body: Faker::Hipster.paragraph,
               category: Category.all.sample,
               user: User.all.sample
@@ -30,5 +31,10 @@ end
   Comment.create body: Faker::Hipster.paragraph,
                 post: Post.all.sample,
                 user: User.all.sample
+end
+
+1000.times do
+  Like.create post: Post.all.sample,
+              user: User.all.sample
 end
 puts'Created data!'

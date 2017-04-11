@@ -5,4 +5,8 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   validates :title, presence: true
   validates :body, presence: true
+
+  def formatted_date
+    created_at.strftime('%A, %B %d, %Y')
+  end
 end
