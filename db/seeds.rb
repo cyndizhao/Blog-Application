@@ -19,7 +19,7 @@ end
 end
 
 10.times do
-  Post.create title: Faker::Lorem.word,
+  Post.create title: Faker::Book.title,
               body: Faker::Hipster.paragraph,
               category: Category.all.sample,
               user: User.all.sample
@@ -30,5 +30,10 @@ end
   Comment.create body: Faker::Hipster.paragraph,
                 post: Post.all.sample,
                 user: User.all.sample
+end
+
+1000.times do
+  Like.create post: Post.all.sample,
+              user: User.all.sample
 end
 puts'Created data!'

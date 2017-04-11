@@ -4,8 +4,9 @@ class PostsController < ApplicationController
   before_action :post_params, only:[:update, :create]
 
   def index
-    @posts = Post.last(10)
-    @postsnested = [[@posts[8], @posts[7], @posts[6]], [@posts[5], @posts[4], @posts[3]], [@posts[2], @posts[1], @posts[0]]]
+    @posts = Post.where.not(id: Post.last).last(9)
+    @last_post = Post.last
+    @most_liked = Post.left_joins(:likes).group(:id).order("COUNT(post_id) DESC").limit(5)
     @number = 10
   end
 

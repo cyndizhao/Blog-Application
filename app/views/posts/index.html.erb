@@ -1,71 +1,71 @@
 <br>
 <div class="container">
-    <div class="row" id="most_liked">
-        <div class="col-lg-8" id="most_liked_image">
-              <div class="row">
-                <%= image_tag 'post1.jpg', style: 'width: 100%', class:"img-responsive" %>
-              </div>
-              <br>
-              <div class="row">
-                <span class="glyphicon glyphicon glyphicon-heart-empty"></span>
-                <span>478</span>
-                <span class="glyphicon glyphicon glyphicon-bookmark pull-right"></span>
-              </div>
-              <div class="row">
-                <h3><%= link_to @posts[-1].title, post_path(@posts[-1].id) %></h3>
-                <p><%= @posts[-1].body %></p>
-                <a href="#"><p><%= User.find(@posts[-1].user.id).first_name %> <%= User.find(@posts[-1].user.id).last_name %></p></a>
-                <span><%= @posts[-1].created_at %></span>
-              </div>
-            </div>
-        <div class="col-lg-4" id="most_liked_text">
-                <div class="row">
-                  <h3>Most Liked</h3>
-                </div>
-                <div class="row">
-                  <a href="#"><h5>The Worst Advice We've Ever Heard</h5></a>
-                </div>
-                <div class="row">
-                  <a href="#"><h5>Think You're Cut Out For Doing Design</h5></a>
-                </div>
-                <div class="row">
-                  <a href="#"><h5>10 Things Your Competitors Can Teach</h5></a>
-                </div>
-                <div class="row">
-                  <a href="#"><h5>How To Solve The Biggest Problems</h5></a>
-                </div>
-        </div>
-    </div>
-
-      <% @postsnested.each do |p|%>
-        <div class="row" id="posts">
-          <% p.each do |s|%>
-            <div class="col-lg-4">
-                    <div class="row">
-                      <%= image_tag "post#{@number}.jpg", style: 'width: 100%', class:"img-responsive" %>
-                    </div>
-                    <br>
-                    <div class="row">
-                      <span class="glyphicon glyphicon glyphicon-heart-empty"></span>
-                      <span>298</span>
-                      <span class="glyphicon glyphicon glyphicon-bookmark pull-right"></span>
-                    </div>
-                    <div class="row">
-                      <h3><%= link_to s.title, post_path(s.id) %></h3>
-                      <p><%= s.body %></p>
-                      <a href="#"><p><%= User.find(s.user.id).first_name %> <%= User.find(s.user.id).last_name %></p></a>
-                      <span><%= s.created_at %></span>
-                    </div>
-                  </div>
-          <% @number -= 1 %>
-          <% end %>
-        </div>
-
-        <br>
-        <br>
-      <% end %>
-      <div class="row" id="more_Article">
-        <a href="#" class="btn btn-info btn-lg" role="button">More Article</a>
+  <div class="row" id="most_liked">
+    <div class="col-lg-8" id="most_liked_image">
+      <div class="row">
+        <%= image_tag 'post1.jpg', style: 'width: 100%', class:"img-responsive" %>
       </div>
       <br>
-      <hr>
+      <div class="row">
+        <span class="glyphicon glyphicon glyphicon-heart-empty"></span>
+        <span><%= @last_post.likes.count %></span>
+        <span class="glyphicon glyphicon glyphicon-bookmark pull-right"></span>
+      </div>
+      <div class="row">
+        <h3><%= link_to @last_post.title, post_path(@posts[-1].id) %></h3>
+        <p><%= @last_post.body %></p>
+        <a href="#">
+          <p><%= User.find(@last_post.user.id).first_name %>
+            <%= User.find(@last_post.user.id).last_name %></p>
+        </a>
+        <span><%= @last_post.created_at %></span>
+      </div>
+    </div>
+    <div class="col-lg-4" id="most_liked_text">
+      <div class="row">
+        <h3>Most Liked</h3>
+      </div>
+      <% @most_liked.each do |post| %>
+      <div class="row">
+        <h5><%= link_to post.title, post_path(post.id) %></h5>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%# @posts.each_slice(3) do |group|%>
+  <% @posts.in_groups(3) do |group|%>
+  <div class="row" id="posts">
+    <% group.each do |post| %>
+    <div class="col-lg-4">
+      <div class="row">
+        <%= image_tag "post#{@number}.jpg", style: 'width: 100%', class:"img-responsive" %>
+      </div>
+      <br>
+      <div class="row">
+        <span class="glyphicon glyphicon glyphicon-heart-empty"></span>
+        <span><%= post.likes.count%></span>
+        <span class="glyphicon glyphicon glyphicon-bookmark pull-right"></span>
+      </div>
+      <div class="row">
+        <h3><%= link_to post.title, post_path(post.id) %></h3>
+        <p><%= post.body %></p>
+        <a href="#">
+          <p><%= User.find(post.user.id).first_name %>
+            <%= User.find(post.user.id).last_name %></p>
+        </a>
+        <span><%= post.created_at %></span>
+      </div>
+    </div>
+    <% @number -= 1 %>
+    <% end %>
+  </div>
+
+  <br>
+  <br>
+  <% end %>
+  <div class="row" id="more_Article">
+    <a href="#" class="btn btn-info btn-lg" role="button">More Article</a>
+  </div>
+  <br>
+  <hr>
