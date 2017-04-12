@@ -71,10 +71,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def something
-    "Cyndi is so smart"
-  end
-
   private
   def get_post
     @post = Post.find(params[:id])
