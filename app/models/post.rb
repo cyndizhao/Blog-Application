@@ -9,4 +9,8 @@ class Post < ApplicationRecord
   def formatted_date
     created_at.strftime('%A, %B %d, %Y')
   end
+
+  def self.something
+    "Cyndi is so smart"
+  end
 end

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
 
 
-  resources :users, only:[:new, :create]
+  resources :users, only:[:new, :create, :update, :edit]
   resources :sessions, only:[:new, :create] do
     delete :destroy, on: :collection
     #get rid of ":id" in the url
