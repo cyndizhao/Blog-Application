@@ -18,6 +18,13 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    comment = Comment.find(params[])
+    @comment = Comment.find(params[:id])
+    if !can? :destroy, @comment
+      redirect_to root_path, alert:'Access denied!'
+    else
+      @comment.destroy
+      redirect_to posts_path(params[:post_id]), notice:'Comment Deleted!'
+    end
   end
+
 end

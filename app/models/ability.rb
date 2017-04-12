@@ -14,5 +14,7 @@ class Ability < ApplicationRecord
     can [:destroy], Comment do |comment|
       comment.user == user
     end
+
+
   end
 end

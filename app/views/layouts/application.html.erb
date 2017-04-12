@@ -56,7 +56,8 @@
             <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
               <li class="nav-item">
-                <a href="#">HELLO, <%= current_user.first_name.upcase %></a>
+                 <% userName = current_user.first_name.upcase %>
+                <%= link_to "HELLO,#{userName}", edit_user_path(current_user.id)%>
               </li>
               <li class="nav-item">
                 <%= link_to "Sign Out", sessions_path, method: :delete %>
