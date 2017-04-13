@@ -32,8 +32,6 @@ class UsersController < ApplicationController
   end
 
   def update_password
-    puts 'password>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
-    puts params[:current_password]
     @user = current_user
     puts @user.password
     if !@user.authenticate(params[:current_password])
