@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root 'welcome#index'
+  get('/change_password', {to:'users#edit_password'})
+  put('/change_password', {to:'users#update_password'})
 
   resources :posts do
     resources :comments, only: [:create, :destroy, :index]
