@@ -27,6 +27,34 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit_password
+
+  end
+
+  def update_password
+    puts 'password>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+    puts params[:current_password]
+    @user = current_user
+    puts @user.password
+    if !@user.authenticate(params[:current_password])
+      flash[:alert] = "Current password is wrong!"
+      render :edit_password
+    elsif @user.authenticate(params[:new_password])
+      flash[:alert] = "New Password can not be same with current password!"
+      render :edit_password
+    elsif params[:new_password] != params[:new_password_confirmation]
+      flash[:alert] = "New Password and confirmation are not the same!"
+      render :edit_password
+    else
+      @user.update_attributes({password: params[:new_password], password_confirmation: params[:new_password_confirmation]})
+      # @user.password = params[:new_password]
+      # @user.password_confirmation = params[:new_password_confirmation]
+      # @user.save
+      flash[:notice] = "Password Changed successfully!"
+      redirect_to root_path
+    end
+  end
+
   private
   def get_user
     @user = User.find(params[:id])

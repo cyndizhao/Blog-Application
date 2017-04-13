@@ -60,6 +60,9 @@
                 <%= link_to "HELLO,#{userName}", edit_user_path(current_user.id)%>
               </li>
               <li class="nav-item">
+                <%= link_to "Change Password", change_password_path %>
+              </li>
+                <li class="nav-item">
                 <%= link_to "Sign Out", sessions_path, method: :delete %>
               </li>
             <% else %>
