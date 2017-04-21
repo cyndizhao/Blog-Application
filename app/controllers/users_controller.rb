@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   before_action :get_user, only:[:update, :edit]
+  def index
+    @users = User.last(10)
+  end
+
   def new
     @user = User.new
   end
@@ -19,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(params.require(:user).permit([:first_name, :last_name, :email]))
+    if @user.update(params.require(:user).permit([:first_name, :last_name, :email, :selfie]))
       flash[:notice] = "User Infomation Updated"
       redirect_to posts_path
     else
@@ -59,6 +63,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit([:first_name, :last_name, :email, :description, :password, :password_confirmation])
+    params.require(:user).permit([:first_name, :last_name, :email, :description, :password, :password_confirmation, :selfie])
   end
 end

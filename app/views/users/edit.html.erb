@@ -27,6 +27,10 @@
                   <div class="form-group">
                     <%= f.text_area :description, class:'form-control input-md', rows:6, placeholder: "Description" %>
                   </div>
+                  <div class="form-group">
+                    <%= f.label :selfie %>
+                    <%= f.file_field :selfie, class: 'form-control'%>
+                  </div>
                   <hr>
                   <div class="row">
                     <div class="col-xs-12 col-md-6"><input type="submit" value="Change my info" class="btn btn-primary btn-block btn-md input-md" tabindex="7"></div>

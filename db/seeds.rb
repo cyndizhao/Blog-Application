@@ -16,7 +16,7 @@ end
             email: Faker::Internet.email,
             password: "12345678",
             password_confirmation: "12345678",
-            description: body: Faker::Hipster.paragraph
+            description: Faker::Hipster.paragraph
 end
 
 10.times do

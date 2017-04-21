@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  # get 'password_resets/new'
+  #
+  # get 'password_resets/edit'
+
   root 'welcome#index'
   get('/change_password', {to:'users#edit_password'})
   put('/change_password', {to:'users#update_password'})
@@ -10,11 +14,12 @@ Rails.application.routes.draw do
 
 
 
-  resources :users, only:[:new, :create, :update, :edit]
+  resources :users, only:[:index, :new, :create, :update, :edit]
   resources :sessions, only:[:new, :create] do
     delete :destroy, on: :collection
     #get rid of ":id" in the url
   end
+  resources :password_resets, only: [:new, :create, :edit, :update]
 
 
 end

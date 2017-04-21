@@ -1,0 +1,16 @@
+<h1>Show all users</h1>
+
+<% @users.each do |u| %>
+<hr>
+<%= u.first_name %>
+<br>
+<%= u.email %>
+<br>
+<%# if u.selfie.exists?%>
+<%# image_tag u.selfie.url %>
+<br>
+<%# image_tag u.selfie.url(:medium) %>
+<%= image_tag u.selfie.url(:thumb) %>
+<p>>>>>>>>>>>>>>>>>>>>>>testend</p>
+<%# end %>
+<% end %>
